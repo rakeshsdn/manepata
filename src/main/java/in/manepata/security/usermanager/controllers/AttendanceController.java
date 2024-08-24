@@ -33,4 +33,5 @@ public class AttendanceController {
     public List<Attendance> getAttendanceByCenterAndStudent(@PathVariable Long centerId, @PathVariable Long studentId) {
         return attendanceService.getAttendanceByCenterAndStudent(centerId, studentId);
     }
+
 }

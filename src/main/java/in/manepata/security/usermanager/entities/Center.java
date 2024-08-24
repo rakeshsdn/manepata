@@ -2,7 +2,6 @@ package in.manepata.security.usermanager.entities;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.*;
