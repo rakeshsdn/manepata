@@ -82,4 +82,14 @@ public class StudentService {
             return ResponseEntity.notFound().build();
         }
     }
+
+    public ResponseEntity<List<StudentDto>> studentListByCenter(Long centerId) {
+        Optional<Center> center = centerRepository.findById(centerId);
+        if(center.isPresent()){
+            List<Student> students = studentRepository.findByCenterId(centerId);
+            return ResponseEntity.ok(StudentMapper.mapToStudentDtoList(students));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

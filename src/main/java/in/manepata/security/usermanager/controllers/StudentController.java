@@ -46,4 +46,9 @@ public class StudentController {
 
         return studentService.deleteStudent(id);
     }
+
+    @GetMapping("/center/{centerId}")
+    public ResponseEntity<List<StudentDto>> studentListByCenter(@PathVariable Long centerId){
+        return studentService.studentListByCenter(centerId);
+    }
 }
