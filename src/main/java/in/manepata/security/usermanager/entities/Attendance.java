@@ -2,7 +2,7 @@ package in.manepata.security.usermanager.entities;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Attendance {
@@ -19,7 +19,7 @@ public class Attendance {
     private Center center;
 
     @Column(nullable = false)
-    private LocalDate date;
+    private LocalDateTime date;
 
     @Column(nullable = false)
     private String status; // Example: "Present", "Absent", etc.
@@ -49,11 +49,11 @@ public class Attendance {
         this.center = center;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
