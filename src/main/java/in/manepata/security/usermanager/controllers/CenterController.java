@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/centers")
 public class CenterController {
 
@@ -40,6 +41,7 @@ public class CenterController {
 
     @PutMapping("/{id}")
     public ResponseEntity<CenterDto> updateCenter(@PathVariable Long id, @RequestBody CenterDto centerDto) {
+        System.out.println(centerDto.getCreatedDateTime());
         CenterDto updatedCenter = centerService.updateCenter(id, centerDto);
         if (updatedCenter == null) {
             return ResponseEntity.notFound().build();

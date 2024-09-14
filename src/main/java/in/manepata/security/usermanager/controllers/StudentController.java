@@ -11,6 +11,7 @@ import in.manepata.security.usermanager.entities.Student;
 import in.manepata.security.usermanager.services.StudentService;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/students")
 public class StudentController {
 
