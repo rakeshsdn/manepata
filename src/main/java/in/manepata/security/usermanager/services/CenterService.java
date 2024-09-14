@@ -33,11 +33,14 @@ public class CenterService {
     }
 
     public CenterDto updateCenter(Long id, CenterDto centerDto) {
-        if (!centerRepository.existsById(id)) {
+        Optional<Center> originalCenter = centerRepository.findById(id);
+        if(originalCenter.isEmpty()){
             return null;
         }
 
+
         Center center = CenterMapper.mapToCenter(centerDto);
+        center.setStudents(originalCenter.get().getStudents());
         center.setId(id); // Ensure the entity has the correct ID
         Center updatedCenter = centerRepository.save(center);
         return CenterMapper.mapToCenterDto(updatedCenter);
