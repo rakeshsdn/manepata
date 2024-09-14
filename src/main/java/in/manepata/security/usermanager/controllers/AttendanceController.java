@@ -11,15 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/attendance")
 public class AttendanceController {
 
     @Autowired
     private AttendanceService attendanceService;
 
-    @PostMapping
-    public List<AttendanceDto> takeAttendance(@RequestBody List<AttendanceDto> attendanceDtos) {
-        return attendanceService.takeAttendance(attendanceDtos);
+    @PostMapping("/{centerId}/{studentId}")
+    public AttendanceDto takeAttendance(@RequestBody AttendanceDto attendanceDto) {
+        return attendanceService.takeAttendance(attendanceDto);
     }
 
     @GetMapping("/student/{studentId}")
@@ -37,7 +38,7 @@ public class AttendanceController {
         return attendanceService.getAttendanceByCenterAndStudent(centerId, studentId);
     }
 
-    @GetMapping("/list/center/{centerId}")
+    @GetMapping("/{centerId}")
     public List<TakeAttendance> getAttendanceListByCenter(@PathVariable Long centerId){
 
         return attendanceService.getAttendanceListByCenter(centerId);

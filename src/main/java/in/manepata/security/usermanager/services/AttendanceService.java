@@ -54,6 +54,30 @@ public class AttendanceService {
 
         return savedAttendanceDtos;
     }
+    public AttendanceDto takeAttendance(AttendanceDto attendanceDto) {
+
+
+            // Fetch the Student and Center based on the IDs in the DTO
+            Student student = studentRepository.findById(attendanceDto.getStudentId())
+                    .orElseThrow(() -> new RuntimeException("Student not found"));
+            Center center = centerRepository.findById(attendanceDto.getCenterId())
+                    .orElseThrow(() -> new RuntimeException("Center not found"));
+
+            // Convert AttendanceDto to Attendance entity
+            Attendance attendance = AttendanceMapper.toEntity(attendanceDto, student, center);
+
+            // Save the Attendance entity
+            Attendance savedAttendance = attendanceRepository.save(attendance);
+
+            // Convert the saved Attendance entity back to AttendanceDto
+            AttendanceDto savedAttendanceDto = AttendanceMapper.toDto(savedAttendance);
+
+            // Add the saved AttendanceDto to the list
+
+
+
+        return savedAttendanceDto;
+    }
 
 
 
