@@ -1,6 +1,7 @@
 package in.manepata.security.usermanager.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -50,6 +51,16 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "center_id",referencedColumnName = "id")
     private Center center;
+	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Attendance> attendanceRecords;
+
+	public List<Attendance> getAttendanceRecords() {
+		return attendanceRecords;
+	}
+
+	public void setAttendanceRecords(List<Attendance> attendanceRecords) {
+		this.attendanceRecords = attendanceRecords;
+	}
 
 	public Center getCenter() {
 		return center;

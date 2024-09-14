@@ -32,17 +32,18 @@ public class StudentController {
         return studentService.getStudentById(id);
     }
 
-    @PostMapping
-    public ResponseEntity<StudentDto> createStudent(@RequestBody StudentDto studentDto) {
+    @PostMapping("/{centerId}")
+    public ResponseEntity<StudentDto> createStudent(@RequestBody StudentDto studentDto, @PathVariable Long centerId) {
+
         return studentService.createStudent(studentDto);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/{centerId}")
     public ResponseEntity<StudentDto> updateStudent(@PathVariable Long id, @RequestBody StudentDto studentDto) {
         return studentService.updateStudent(id, studentDto);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}/{centerId}")
     public ResponseEntity<?> deleteStudent(@PathVariable Long id) {
 
         return studentService.deleteStudent(id);
@@ -51,5 +52,10 @@ public class StudentController {
     @GetMapping("/center/{centerId}")
     public ResponseEntity<List<StudentDto>> studentListByCenter(@PathVariable Long centerId){
         return studentService.studentListByCenter(centerId);
+    }
+
+    @GetMapping("/{studentId}/{centerId}")
+    public ResponseEntity<StudentDto> studentListByCenter(@PathVariable Long centerId, @PathVariable Long studentId ){
+         return studentService.getStudentById(studentId);
     }
 }
